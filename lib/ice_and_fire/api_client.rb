@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-class ApiClient
+class IceAndFire::ApiClient
   API_URL = 'http://anapioficeandfire.com/api/'
 
   def self.get(req_string)

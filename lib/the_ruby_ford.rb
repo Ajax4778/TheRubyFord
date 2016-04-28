@@ -1,5 +1,3 @@
-require_relative 'the_ruby_ford/api_client'
-
 class IceAndFire
   API_OBJECTS = %w(character book house)
 
@@ -20,3 +18,5 @@ class IceAndFire
     end
   end
 end
+
+require 'ice_and_fire/api_client'
