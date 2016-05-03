@@ -14,9 +14,13 @@ class IceAndFire
       return unless obj_id
 
       req_string = obj + 's/' + obj_id.to_s
-      ApiClient.get(req_string)
+      attributes = ApiClient.get(req_string)
+      "IceAndFire::#{obj.capitalize}".constantize.new(attributes)
     end
   end
 end
 
 require 'ice_and_fire/api_client'
+require 'ice_and_fire/character'
+require 'ice_and_fire/book'
+require 'ice_and_fire/house'

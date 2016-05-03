@@ -8,7 +8,9 @@ Gem::Specification.new do |s|
   s.files    = [
                   "lib/the_ruby_ford.rb",
                   "lib/ice_and_fire/api_client.rb",
-                  "lib/ice_and_fire/character.rb"
+                  "lib/ice_and_fire/character.rb",
+                  "lib/ice_and_fire/book.rb",
+                  "lib/ice_and_fire/house.rb"
                ]
   s.homepage = 'http://rubygems.org/gems/the_ruby_ford'
   s.license  = 'MIT'

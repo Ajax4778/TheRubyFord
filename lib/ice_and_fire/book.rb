@@ -1,10 +1,9 @@
 require 'json'
 require 'active_support/inflector'
 
-class IceAndFire::Character
-  attr_reader :url, :name, :culture, :born, :died, :titles, :aliases,
-              :father, :mother, :spouse, :allegiances, :books, :pov_books,
-              :tv_series, :played_by
+class IceAndFire::Book
+  attr_reader :url, :name, :isbn, :authors, :number_of_pages, :publisher,
+              :country, :media_type, :released, :characters, :pov_characters
 
   def initialize(attributes)
     attributes.each_pair do |attribute_name, value|
