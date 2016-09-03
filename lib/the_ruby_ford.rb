@@ -1,22 +1,43 @@
 class IceAndFire
   API_OBJECTS = %w(character book house)
 
-  class << self
-    API_OBJECTS.each do |obj|
-      define_method(obj) do |obj_id|
-        new.send(obj.to_sym, obj_id)
-      end
-    end
+  def self.character(id)
+    new.character(id)
   end
 
-  API_OBJECTS.each do |obj|
-    define_method(obj) do |obj_id|
-      return unless obj_id
+  def self.book(id)
+    new.book(id)
+  end
 
-      req_string = obj + 's/' + obj_id.to_s
-      attributes = ApiClient.get(req_string)
-      "IceAndFire::#{obj.capitalize}".constantize.new(attributes)
-    end
+  def self.house(id)
+    new.house(id)
+  end
+
+  def character(id)
+    return unless id
+
+    req_string = 'characters/' + id.to_s
+    attributes = ApiClient.get(req_string)
+
+    IceAndFire::Character.new(attributes)
+  end
+
+  def book(id)
+    return unless id
+
+    req_string = 'books/' + id.to_s
+    attributes = ApiClient.get(req_string)
+
+    IceAndFire::Book.new(attributes)
+  end
+
+  def house(id)
+    return unless id
+
+    req_string = 'houses/' + id.to_s
+    attributes = ApiClient.get(req_string)
+
+    IceAndFire::House.new(attributes)
   end
 end
 
