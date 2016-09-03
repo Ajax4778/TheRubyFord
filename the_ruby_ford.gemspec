@@ -10,7 +10,8 @@ Gem::Specification.new do |s|
                   "lib/ice_and_fire/api_client.rb",
                   "lib/ice_and_fire/character.rb",
                   "lib/ice_and_fire/book.rb",
-                  "lib/ice_and_fire/house.rb"
+                  "lib/ice_and_fire/house.rb",
+                  "lib/ice_and_fire/cache.rb"
                ]
   s.homepage = 'http://rubygems.org/gems/the_ruby_ford'
   s.license  = 'MIT'
