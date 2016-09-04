@@ -18,4 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json', '~> 1.8'
   s.add_dependency 'activesupport', '~> 5.0'
+
+  s.add_development_dependency 'rspec', '~> 3.4'
 end
