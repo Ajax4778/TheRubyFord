@@ -1,17 +1,15 @@
-require_relative '../the_ruby_ford'
-
 class IceAndFire::Cache
   DEFAULT_CACHE_LIMIT = 10
 
-  def initialize
-    @characters = {}
-    @houses     = {}
-    @books      = {}
+  def initialize(objects = {})
+    @cache = objects
   end
 
-  IceAndFire::API_OBJECTS.each do |obj|
-    define_method(obj) do |obj_id|
-      instance_variable_get("@#{obj}s")[obj_id]
-    end
+  def [](req_string)
+    @cache[req_string.to_sym]
+  end
+
+  def []=(req_string, obj)
+    @cache[req_string.to_sym] = obj
   end
 end
