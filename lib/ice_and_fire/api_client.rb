@@ -4,11 +4,14 @@ require 'json'
 class IceAndFire::ApiClient
   API_URL = 'http://anapioficeandfire.com/api/'
 
-  def self.get(req_string)
-    new.get(req_string)
+  def initialize
+    @cache = IceAndFire::Cache.new
   end
 
   def get(req_string)
+    cached_obj = @cache[req_string]
+    return cached_obj if cached_obj
+
     req_url = URI.parse(API_URL + req_string)
 
     http_req = Net::HTTP::Get.new(req_url)
@@ -16,6 +19,9 @@ class IceAndFire::ApiClient
       http.request(http_req)
     end
 
-    JSON.parse(http_res.body)
+    api_obj = JSON.parse(http_res.body)
+    @cache[req_string] = api_obj
+
+    api_obj
   end
 end
