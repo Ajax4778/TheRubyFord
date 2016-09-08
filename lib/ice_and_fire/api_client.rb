@@ -9,9 +9,26 @@ class IceAndFire::ApiClient
   end
 
   def get(req_string)
-    cached_obj = @cache[req_string]
+    cached_obj = get_from_cache(req_string)
     return cached_obj if cached_obj
 
+    api_obj = get_from_api(req_string)
+    add_to_cache(req_string, api_obj)
+
+    api_obj
+  end
+
+  private
+
+  def get_from_cache(req_string)
+    @cache[req_string]
+  end
+
+  def add_to_cache(req_string, api_obj)
+    @cache[req_string] = api_obj
+  end
+
+  def get_from_api(req_string)
     req_url = URI.parse(API_URL + req_string)
 
     http_req = Net::HTTP::Get.new(req_url)
@@ -19,9 +36,6 @@ class IceAndFire::ApiClient
       http.request(http_req)
     end
 
-    api_obj = JSON.parse(http_res.body)
-    @cache[req_string] = api_obj
-
-    api_obj
+    JSON.parse(http_res.body)
   end
 end
