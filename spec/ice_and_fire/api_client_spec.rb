@@ -9,7 +9,7 @@ describe IceAndFire::ApiClient do
   describe 'get' do
     context 'if the requested object is already cached' do
       let(:req_string) { 'houses/99'}
-      let(:cached_obj) { { name: 'House Dayne of Starfall' } }
+      let(:cached_obj) { IceAndFire::House.new({ 'name' => 'House Dayne of Starfall' }) }
 
       it 'does not make an API call' do
         @client.instance_variable_set(
@@ -36,7 +36,7 @@ describe IceAndFire::ApiClient do
 
       it 'makes an API call for the object' do
         result = @client.get(req_string)
-        expect(result['name']).to eq(name)
+        expect(result.name).to eq(name)
       end
 
       it 'caches the object after receiving it' do

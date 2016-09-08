@@ -36,6 +36,14 @@ class IceAndFire::ApiClient
       http.request(http_req)
     end
 
-    JSON.parse(http_res.body)
+    attributes = JSON.parse(http_res.body)
+    obj_class  = get_obj_class(req_string)
+
+    obj_class.new(attributes)
+  end
+
+  def get_obj_class(req_string)
+    type, _ = req_string.split('/')
+    "IceAndFire::#{type.singularize.capitalize}".constantize
   end
 end
