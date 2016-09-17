@@ -20,6 +20,7 @@ class IceAndFire
 end
 
 require 'ice_and_fire/api_client'
+require 'ice_and_fire/base'
 require 'ice_and_fire/character'
 require 'ice_and_fire/book'
 require 'ice_and_fire/house'
