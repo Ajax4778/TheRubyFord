@@ -1,14 +1,14 @@
-require 'json'
-require 'active_support/inflector'
+class IceAndFire::House < IceAndFire::Base
+  HOUSE_ATTRIBUTES = [
+    :ancestral_weapons, :cadet_branches, :coat_of_arms,
+    :current_lord, :died_out, :founded, :founder, :heir,
+    :name, :overlord, :region, :seats, :sworn_members,
+    :titles, :url, :words
+  ]
 
-class IceAndFire::House
-  attr_reader :url, :name, :region, :coat_of_arms, :words, :titles, :seats,
-              :current_lord, :heir, :overlord, :founded, :founder, :died_out,
-              :ancestral_weapons, :cadet_branches, :sworn_members
+  private
 
-  def initialize(attributes)
-    attributes.each_pair do |attribute_name, value|
-      instance_variable_set("@#{attribute_name.underscore}", value)
-    end
+  def method_names
+    HOUSE_ATTRIBUTES
   end
 end

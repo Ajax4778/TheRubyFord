@@ -1,14 +1,13 @@
-require 'json'
-require 'active_support/inflector'
+class IceAndFire::Character < IceAndFire::Base
+  CHARACTER_ATTRIBUTES = [
+    :aliases, :allegiances, :books, :born, :culture,
+    :died, :father, :gender, :mother, :name, :played_by,
+    :pov_books, :spouse, :titles, :tv_series, :url
+  ]
 
-class IceAndFire::Character
-  attr_reader :url, :name, :culture, :born, :died, :titles, :aliases,
-              :father, :mother, :spouse, :allegiances, :books, :pov_books,
-              :tv_series, :played_by
+  private
 
-  def initialize(attributes)
-    attributes.each_pair do |attribute_name, value|
-      instance_variable_set("@#{attribute_name.underscore}", value)
-    end
+  def method_names
+    CHARACTER_ATTRIBUTES
   end
 end
