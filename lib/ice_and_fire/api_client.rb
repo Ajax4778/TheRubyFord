@@ -13,9 +13,9 @@ class IceAndFire::ApiClient
     return cached_obj if cached_obj
 
     api_obj = get_from_api(req_string)
-    add_to_cache(req_string, api_obj)
+    return nil unless api_obj
 
-    api_obj
+    add_to_cache(req_string, api_obj)
   end
 
   private
@@ -36,9 +36,10 @@ class IceAndFire::ApiClient
       http.request(http_req)
     end
 
+    return nil unless http_res.code == '200'
+
     attributes = JSON.parse(http_res.body)
     obj_class  = get_obj_class(req_string)
-
     obj_class.new(attributes)
   end
 

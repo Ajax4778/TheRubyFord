@@ -7,9 +7,14 @@ describe IceAndFire::ApiClient do
   end
 
   describe 'get' do
+    it 'returns nil if the request is invalid' do
+      req_string = 'books/99999'
+      expect(@client.get(req_string)).to be_nil
+    end
+
     context 'if the requested object is already cached' do
       let(:req_string) { 'houses/99'}
-      let(:cached_obj) { IceAndFire::House.new({ 'name' => 'House Dayne of Starfall' }) }
+      let(:cached_obj) { 'House Dayne of Starfall' }
 
       it 'does not make an API call' do
         @client.instance_variable_set(
