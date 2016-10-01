@@ -1,5 +1,5 @@
 require 'rspec'
-require 'ice_and_fire/cache'
+require 'the_ruby_ford'
 
 describe IceAndFire::Cache do
   describe 'get' do
